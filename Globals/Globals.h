@@ -1394,6 +1394,7 @@ const char LABEL_DURATION[] PROGMEM = "Duration";
 const char LABEL_SPEED[] PROGMEM = "Speed";
 const char LABEL_OVERRIDE[] PROGMEM = "Override";
 const char LABEL_LIBVER[] PROGMEM = "Libraries Version: ";
+const char LABEL_CODEVER[] PROGMEM = "Code Version: ";
 const char LABEL_IPADDRESS[] PROGMEM = "IP Address: ";
 const char LABEL_CLOUD[] PROGMEM = "Cloud Connection: ";
 const char LABEL_CLOUD_CONNECTED[] PROGMEM = "Connected";

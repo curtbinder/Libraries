@@ -3060,6 +3060,9 @@ void ReefAngelClass::ReDrawScreen()
 					Font.DrawTextP(xstart,j,LABEL_LIBVER);
 					Font.DrawText(ReefAngel_Version);
 					j+=20;
+					Font.DrawTextP(xstart,j,LABEL_CODEVER);
+					Font.DrawText(CodeVersion);
+					j+=20;
 					Font.DrawTextP(xstart,j,LABEL_IPADDRESS);
 					const byte* ipAddr=EthernetDHCP.ipAddress();
 					Font.DrawText(ip_to_str(ipAddr));

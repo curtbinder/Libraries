@@ -114,6 +114,8 @@ void ReefAngelClass::Init()
 	InternalMemory.write(ATO_Exceed_Flag, 0);
 	InternalMemory.write(ATO_Single_Exceed_Flag, 0);
 #endif  // ENABLE_EXCEED_FLAGS
+    // default set code version
+    CodeVersion = "1.0";
 
 
 	PHMin = InternalMemory.PHMin_read();

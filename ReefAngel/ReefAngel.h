@@ -106,6 +106,8 @@ public:
 	unsigned long LastFeedingMode;
 	unsigned long LastWaterChangeMode;
 
+	String CodeVersion;
+
 	ReefAngelClass();
 
 #ifdef RA_STANDARD
