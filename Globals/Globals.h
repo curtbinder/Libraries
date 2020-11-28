@@ -803,6 +803,7 @@ When adding more variables, use the previous value plus 1 or 2
 #define DCLABELBAR					RGB565(0xA1, 0xC5, 0x59)
 #define CVARLABELBAR				RGB565(0xF6, 0x03, 0xFF)
 #define STATUSLABELBAR				RGB565(0x9F, 0xA3, 0xC2)
+#define VERSIONLABELBAR				RGB565(0x9F, 0xA3, 0xC2)
 #define ALERTLABELBAR				RGB565(0xFF, 0x33, 0x22)
 #define PWMWHITE					COLOR_ORANGE
 #define PWMROYALBLUE				RGB565(0x0, 0x66, 0xCC)
@@ -1225,8 +1226,9 @@ typedef struct Compensation
 #define DCPUMP_SCREEN		17
 #define CVAR_SCREEN			18
 #define STATUS_SCREEN		19
-#define ALERT_SCREEN		20
-#define MAX_SCREENS			21 // Highest ID for main screens
+#define VERSION_SCREEN      20
+#define ALERT_SCREEN		21
+#define MAX_SCREENS			22 // Highest ID for main screens
 #define DIMMING_OVERRIDE	127
 
 //Menu Screens
@@ -1393,8 +1395,8 @@ const char LABEL_MODE[] PROGMEM = "Mode";
 const char LABEL_DURATION[] PROGMEM = "Duration";
 const char LABEL_SPEED[] PROGMEM = "Speed";
 const char LABEL_OVERRIDE[] PROGMEM = "Override";
-const char LABEL_LIBVER[] PROGMEM = "Libraries Version: ";
-const char LABEL_CODEVER[] PROGMEM = "Code Version: ";
+const char LABEL_LIBVER[] PROGMEM = "Libraries: ";
+const char LABEL_CODEVER[] PROGMEM = "Code: ";
 const char LABEL_IPADDRESS[] PROGMEM = "IP Address: ";
 const char LABEL_CLOUD[] PROGMEM = "Cloud Connection: ";
 const char LABEL_CLOUD_CONNECTED[] PROGMEM = "Connected";
@@ -1403,6 +1405,7 @@ const char LABEL_SD[] PROGMEM = "SD Card: ";
 const char LABEL_SD_INSERTED[] PROGMEM = "Inserted";
 const char LABEL_SD_NOT_FOUND[] PROGMEM = "Not Found";
 const char LABEL_LAST_BOOT[] PROGMEM = "Last Boot: ";
+const char LABEL_BUILD_DATE[] PROGMEM = "Build Date: ";
 
 
 // RF Modes

@@ -139,6 +139,7 @@ void ReefAngelClass::ChangeDisplayedScreen(signed char index)
 						if (a==DCPUMP_SCREEN && bitRead(EM1,1)) break;
 						if (a==CVAR_SCREEN && cvarcheck) break;
 						if (a==STATUS_SCREEN) break;
+						if (a==VERSION_SCREEN) break;
 						if (a==ALERT_SCREEN) break;
 					}
 					DisplayedScreen++;
@@ -162,6 +163,7 @@ void ReefAngelClass::ChangeDisplayedScreen(signed char index)
 						if (a==DCPUMP_SCREEN && bitRead(EM1,1)) break;
 						if (a==CVAR_SCREEN && cvarcheck) break;
 						if (a==STATUS_SCREEN) break;
+						if (a==VERSION_SCREEN) break;
 						if (a==ALERT_SCREEN) break;
 					}
 					DisplayedScreen--;
@@ -3057,12 +3059,6 @@ void ReefAngelClass::ReDrawScreen()
 #endif // (__SAM3X8E__)
 					Font.SetColor(COLOR_WHITE,COLOR_BLACK,false);
 					j=75;
-					Font.DrawTextP(xstart,j,LABEL_LIBVER);
-					Font.DrawText(ReefAngel_Version);
-					j+=20;
-					Font.DrawTextP(xstart,j,LABEL_CODEVER);
-					Font.DrawText(CodeVersion);
-					j+=20;
 					Font.DrawTextP(xstart,j,LABEL_IPADDRESS);
 					const byte* ipAddr=EthernetDHCP.ipAddress();
 					Font.DrawText(ip_to_str(ipAddr));
@@ -3081,6 +3077,37 @@ void ReefAngelClass::ReDrawScreen()
 					j+=20;
 					Font.DrawTextP(xstart,j,LABEL_LAST_BOOT);
 					TouchLCD.DrawDateTime(RAStart,Font.GetX(),j,MilitaryTime,Font);
+				}
+			}
+			else if(DisplayedScreen==VERSION_SCREEN)
+			{
+				if (NeedsRedraw)
+				{
+					int xstart=twidth/10;
+					NeedsRedraw=false;
+					TouchLCD.Clear(COLOR_BLACK,0,34,twidth,theight-34);
+					//Gray Bar
+					for (int a=0;a<=25;a++) TouchLCD.DrawLine(alphaBlend(VERSIONLABELBAR,a*4),0,40+a,twidth,40+a);
+					LargeFont.SetColor(COLOR_GOLD,BKCOLOR,true);
+#if defined (__SAM3X8E__)
+					LargeFont.DrawCenterText((twidth/2)+1,34,LABEL_RELAY[DisplayedScreen-RELAY_BOX]);
+					LargeFont.SetColor(COLOR_WHITE,BKCOLOR,true);
+					LargeFont.DrawCenterText((twidth/2),33,LABEL_RELAY[DisplayedScreen-RELAY_BOX]);
+#else
+					LargeFont.DrawCenterTextP((twidth/2)+1,34,(char * )pgm_read_word(&(LABEL_RELAY[DisplayedScreen-RELAY_BOX])));
+					LargeFont.SetColor(COLOR_WHITE,BKCOLOR,true);
+					LargeFont.DrawCenterTextP((twidth/2),33,(char * )pgm_read_word(&(LABEL_RELAY[DisplayedScreen-RELAY_BOX])));
+#endif // (__SAM3X8E__)
+					Font.SetColor(COLOR_WHITE,COLOR_BLACK,false);
+					j=75;
+					Font.DrawTextP(xstart,j,LABEL_LIBVER);
+					Font.DrawText(ReefAngel_Version);
+					j+=20;
+					Font.DrawTextP(xstart,j,LABEL_CODEVER);
+					Font.DrawText(CodeVersion);
+					j+=20;
+					Font.DrawTextP(xstart,j,LABEL_BUILD_DATE);
+					Font.DrawText(CODE_BUILD_DATE);
 				}
 			}
 			else if(DisplayedScreen==ALERT_SCREEN)
