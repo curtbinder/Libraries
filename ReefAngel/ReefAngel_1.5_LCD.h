@@ -2267,8 +2267,11 @@ void ReefAngelClass::DisplayVersion()
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,50,buf);
 #endif
 	// TODO Add in Code version and build date
-	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,60,"Code:");
-	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,70,CodeVersion);
+	char buf2[32];
+	sprintf(buf, "Code: %s", CodeVersion);
+	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,60,buf2);
+	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,70,"Build Date:");
+	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,80,CODE_BUILD_DATE);
 }
 #endif  // VersionMenu
 
