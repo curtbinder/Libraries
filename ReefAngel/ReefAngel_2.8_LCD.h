@@ -3107,7 +3107,11 @@ void ReefAngelClass::ReDrawScreen()
 					Font.DrawText(CodeVersion);
 					j+=20;
 					Font.DrawTextP(xstart,j,LABEL_BUILD_DATE);
+#ifdef CODE_BUILD_DATE
 					Font.DrawText(CODE_BUILD_DATE);
+#else
+					Font.DrawText("");
+#endif  // CODE_BUILD_DATE
 				}
 			}
 			else if(DisplayedScreen==ALERT_SCREEN)

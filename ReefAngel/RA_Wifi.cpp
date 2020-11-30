@@ -194,6 +194,7 @@ void RA_Wifi::PushBuffer(byte inStr)
             else if (strncmp("GET /mi", m_pushback, 7)==0) { reqtype = -REQ_M_INT; weboption2 = -1; bHasSecondValue = false; bCommaCount = 0; }
 //            else if (strncmp("GET /ma", m_pushback, 7)==0) reqtype = -REQ_M_ALL;
             else if (strncmp("GET /mr", m_pushback, 7)==0) { reqtype = -REQ_M_RAW; weboption2 = -1; bHasSecondValue = false; bCommaCount = 0; }
+            else if (strncmp("GET /vc", m_pushback, 7)==0) reqtype = -REQ_VERSION_CODE;
             else if (strncmp("GET /v", m_pushback, 6)==0) reqtype = -REQ_VERSION;
             else if (strncmp("GET /d", m_pushback, 6)==0) { reqtype = -REQ_DATE; weboption2 = -1; weboption3 = -1; bCommaCount = 0; }
             else if (strncmp("HTTP/1.", m_pushback, 7)==0) reqtype = -REQ_HTTP;
@@ -208,6 +209,7 @@ void RA_Wifi::PushBuffer(byte inStr)
             else if (strncmp("GET /ml", m_pushback, 7)==0) reqtype = -REQ_ALARM_LEAK;
             else if (strncmp("GET /l0", m_pushback, 7)==0) reqtype = -REQ_LIGHTSOFF;
             else if (strncmp("GET /l1", m_pushback, 7)==0) reqtype = -REQ_LIGHTSON;
+            else if (strncmp("GET /bd", m_pushback, 7)==0) reqtype = -REQ_BUILD_DATE;
             else if (strncmp("GET /boot", m_pushback, 9)==0) reqtype = REQ_REBOOT;
             else if (strncmp("GET /po", m_pushback, 7)==0) { reqtype = -REQ_OVERRIDE; weboption2 = -1; bHasSecondValue = false; bCommaCount = 0; }
 #ifdef CUSTOM_VARIABLES
@@ -644,6 +646,30 @@ void RA_Wifi::ProcessHTTP()
 			print("<V>"ReefAngel_Version"</V>");
 			break;
 		}  // REQ_VERSION
+		case REQ_VERSION_CODE:
+		{
+		    int s = 9;
+		    s += strlen(ReefAngel.CodeVersion);
+		    PrintHeader(s,1);
+		    print("<VC>");
+		    print(ReefAngel.CodeVersion);
+		    print("</VC>");
+		    break;
+		}  // REQ_VERSION_CODE
+		case REQ_BUILD_DATE:
+		{
+		    int s = 9;
+#ifdef CODE_BUILD_DATE
+		    s += strlen(CODE_BUILD_DATE);
+#endif // CODE_BUILD_DATE
+		    PrintHeader(s,1);
+#ifdef CODE_BUILD_DATE
+		    print("<BD>"CODE_BUILD_DATE"</BD>");
+#else
+            print("<BD></BD>");
+#endif // CODE_BUILD_DATE
+		    break;
+		}  // REQ_BUILD_DATE
 		case REQ_DATE:
 		{
 			uint8_t s = 10;

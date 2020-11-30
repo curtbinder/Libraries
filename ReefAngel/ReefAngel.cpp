@@ -115,7 +115,7 @@ void ReefAngelClass::Init()
 	InternalMemory.write(ATO_Single_Exceed_Flag, 0);
 #endif  // ENABLE_EXCEED_FLAGS
     // default set code version
-    CodeVersion = "1.0";
+    SetCodeVersion("v1.0");
 
 
 	PHMin = InternalMemory.PHMin_read();
@@ -837,6 +837,12 @@ void ReefAngelClass::RANetTrigger(byte Trigger)
 	TriggerValue = Trigger;
 }
 #endif // RANET
+
+void ReefAngelClass::SetCodeVersion(const char *version)
+{
+    // Stores the code version in memory
+    snprintf(CodeVersion, sizeof(CodeVersion), "%s", version);
+}
 
 void ReefAngelClass::SetTemperatureUnit(byte unit)
 {

@@ -297,6 +297,8 @@ const char JSON_CLOSE[] PROGMEM = "}}";
 #define REQ_CALIBRATION	24		// Calibration
 #define REQ_JSON		25		// JSON export
 #define REQ_FAVICON		26		// favicon
+#define REQ_VERSION_CODE    27  // Custom Code Version
+#define REQ_BUILD_DATE  28      // Code build date
 #define REQ_HTTP		127		// HTTP get request from  external server
 #define REQ_UNKNOWN		128	 	// Unknown request
 

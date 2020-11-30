@@ -2266,9 +2266,9 @@ void ReefAngelClass::DisplayVersion()
 	sprintf(buf, "IP: %d.%d.%d.%d\0", ipAddr[0], ipAddr[1], ipAddr[2], ipAddr[3]);
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,50,buf);
 #endif
-	// TODO Add in Code version and build date
-	char buf2[32];
-	sprintf(buf, "Code: %s", CodeVersion);
+
+	char buf2[20];
+	snprintf(buf2, sizeof(buf2), "Code: %s", CodeVersion);
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,60,buf2);
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,70,"Build Date:");
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,80,CODE_BUILD_DATE);

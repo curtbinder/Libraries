@@ -105,8 +105,7 @@ public:
 	bool BusLocked;
 	unsigned long LastFeedingMode;
 	unsigned long LastWaterChangeMode;
-
-	String CodeVersion;
+    char CodeVersion[12];
 
 	ReefAngelClass();
 
@@ -288,6 +287,7 @@ public:
 	void CheckFeedingDrawing();
 	void CheckWaterChangeDrawing();
 	void Reboot();
+	void SetCodeVersion(const char *version);
 #ifdef RANET
 	void RANetTrigger(byte TriggerValue);
 #endif // RANET
