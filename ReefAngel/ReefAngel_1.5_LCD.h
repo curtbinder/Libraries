@@ -2132,7 +2132,7 @@ void ReefAngelClass::DisplayMenu()
 				break;
 #endif  // if defined SetupExtras || defined ATOSetup
 #endif  // !defined SIMPLE_MENU && !defined CUSTOM_MENU
-				}  // switch MenuNum				
+				}  // switch MenuNum
 			}
 			else
 			{
@@ -2271,7 +2271,11 @@ void ReefAngelClass::DisplayVersion()
 	snprintf(buf2, sizeof(buf2), "Code: %s", CodeVersion);
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,60,buf2);
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,70,"Build Date:");
+#ifdef CODE_BUILD_DATE
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,80,CODE_BUILD_DATE);
+#else
+	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,80,"");
+#endif  // CODE_BUILD_DATE
 }
 #endif  // VersionMenu
 
@@ -3520,7 +3524,7 @@ void ReefAngelClass::DisplaySetupCalibrateChoicePH()
             {
                 ph_target_range[setup_step]=PH_MAXIMUM_RANGE[HIGH];
             }
-            else 
+            else
             {
                 setup_input_render=true;
             }
@@ -3546,7 +3550,7 @@ void ReefAngelClass::DisplaySetupCalibrateChoicePH()
             {
                 ph_target_range[setup_step]=PH_MAXIMUM_RANGE[LOW];
             }
-            else 
+            else
             {
                 setup_input_render=true;
             }
@@ -3703,7 +3707,7 @@ void ReefAngelClass::DisplaySetupCalibrateChoicePHExp()
             {
                 ph_target_range[setup_step]=PH_MAXIMUM_RANGE[HIGH];
             }
-            else 
+            else
             {
                 setup_input_render=true;
             }
@@ -3729,7 +3733,7 @@ void ReefAngelClass::DisplaySetupCalibrateChoicePHExp()
             {
                 ph_target_range[setup_step]=PH_MAXIMUM_RANGE[LOW];
             }
-            else 
+            else
             {
                 setup_input_render=true;
             }
@@ -3920,7 +3924,7 @@ void ReefAngelClass::SetupCalibrateORP()
 				iO[b]=CloudCalVal;
 #endif
 			}
-			
+
 			LCD.DrawCalibrate(iO[b], MENU_START_COL + offset, MENU_START_ROW*5);
 			delay(100);
 			if (  bDrawButtons )
@@ -4291,7 +4295,7 @@ void ReefAngelClass::DisplaySetupDateTime()
         LCD.DrawText(DefaultFGColor, DefaultBGColor, 82, 45, "/");
         LCD.DrawText(DefaultFGColor, DefaultBGColor, 62, 75, ":");
         setup_screen_refresh=!setup_screen_refresh;
-        
+
     }
     #if defined WDT||defined WDT_FORCE
     wdt_reset();
@@ -4522,7 +4526,7 @@ void ReefAngelClass::DisplaySetupDateTime24()
         LCD.DrawText(DefaultFGColor, DefaultBGColor, 82, 45, "/");
         LCD.DrawText(DefaultFGColor, DefaultBGColor, 62, 75, ":");
         setup_screen_refresh=!setup_screen_refresh;
-        
+
     }
     #if defined WDT||defined WDT_FORCE
     wdt_reset();
