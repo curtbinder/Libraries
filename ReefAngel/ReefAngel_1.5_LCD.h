@@ -2270,11 +2270,9 @@ void ReefAngelClass::DisplayVersion()
 	char buf2[20];
 	snprintf(buf2, sizeof(buf2), "Code: %s", CodeVersion);
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,60,buf2);
-	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,70,"Build Date:");
 #ifdef CODE_BUILD_DATE
+	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,70,"Build Date:");
 	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,80,CODE_BUILD_DATE);
-#else
-	LCD.DrawText(ModeScreenColor,DefaultBGColor,10,80,"");
 #endif  // CODE_BUILD_DATE
 }
 #endif  // VersionMenu

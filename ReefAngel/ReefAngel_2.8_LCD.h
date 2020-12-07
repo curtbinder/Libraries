@@ -3105,12 +3105,10 @@ void ReefAngelClass::ReDrawScreen()
 					j+=20;
 					Font.DrawTextP(xstart,j,LABEL_CODEVER);
 					Font.DrawText(CodeVersion);
+#ifdef CODE_BUILD_DATE
 					j+=20;
 					Font.DrawTextP(xstart,j,LABEL_BUILD_DATE);
-#ifdef CODE_BUILD_DATE
 					Font.DrawText(CODE_BUILD_DATE);
-#else
-					Font.DrawText("");
 #endif  // CODE_BUILD_DATE
 				}
 			}
