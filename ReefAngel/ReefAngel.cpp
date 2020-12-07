@@ -2722,6 +2722,8 @@ void MQTTSubCallback(char* topic, byte* payload, unsigned int length) {
 				else if (strcmp("v", mqtt_sub)==0) mqtt_type=MQTT_VERSION;
 				else if (strcmp("mr", mqtt_sub)==0) mqtt_type=MQTT_MEM_RAW;
 				else if (strcmp("avs", mqtt_sub)==0) mqtt_type=MQTT_ALEXA;
+				else if (strcmp("vc", mqtt_sub)==0) mqtty_type=MQTT_VERSION_CODE;
+				else if (strcmp("bd", mqtt_sub)==0) mqtty_type=MQTT_BUILD_DATE;
 			}
 		}
 		else
@@ -3028,6 +3030,37 @@ void MQTTSubCallback(char* topic, byte* payload, unsigned int length) {
 			ReefAngel.OldParamArrayByte[13]=ReefAngel.OldParamArrayByte[13]+1;
 			ReefAngel.OldParamArrayByte[14]=ReefAngel.OldParamArrayByte[14]+1;
 			break;
+		}
+		case MQTT_VERSION_CODE:
+		{
+			char buffer[16];
+			snprintf(buffer, sizeof(buffer), "VC:%s", ReefAngel.CodeVersion);
+#ifdef RA_STAR
+			ReefAngel.Network.CloudPublish(buffer);
+#endif
+#ifdef CLOUD_WIFI
+			Serial.print(F("CLOUD:"));
+			Serial.println(buffer);
+#endif
+			break;
+		}
+		case MQTT_BUILD_DATE:
+		{
+#ifdef CODE_BUILD_DATE
+            char buffer[24];
+			sprintf(buffer, sizeof(buffer), "BD:%s", CODE_BUILD_DATE);
+#else
+            char buffer[8];
+            sprintf(buffer, sizeof(buffer), "BD:%s", "");
+#endif  // CODE_BUILD_DATE
+#ifdef RA_STAR
+			ReefAngel.Network.CloudPublish(buffer);
+#endif
+#ifdef CLOUD_WIFI
+			Serial.print(F("CLOUD:"));
+			Serial.println(buffer);
+#endif
+		    break;
 		}
 	}
 }
